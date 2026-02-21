@@ -1,5 +1,4 @@
-const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbz4EkhujlqLCm08I1g54veVR1NE8jOH8TjY7pC0BCS-Dz3L6dxu-ZH6SpE0U8PbQrdb/exec';
-
+const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxwHTCi_FXQILPcytOrj_OdtsjUqoH4PC5cJpz3R0ijsAFMs-r4sHoJY4WXK-kYVG4rzg/exec';
 export type FormType = 'on-analiz' | 'iletisim' | 'firsat-havuzu';
 
 export interface FormSubmission {
