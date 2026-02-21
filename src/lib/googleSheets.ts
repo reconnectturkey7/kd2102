@@ -1,4 +1,5 @@
 const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxwHTCi_FXQILPcytOrj_OdtsjUqoH4PC5cJpz3R0ijsAFMs-r4sHoJY4WXK-kYVG4rzg/exec';
+
 export type FormType = 'on-analiz' | 'iletisim' | 'firsat-havuzu';
 
 export interface FormSubmission {
@@ -8,17 +9,18 @@ export interface FormSubmission {
 
 export async function submitToGoogleSheets(data: FormSubmission): Promise<boolean> {
     try {
+        const params = new URLSearchParams();
+        params.append('data', JSON.stringify(data));
+
         await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
             method: 'POST',
-            mode: 'no-cors', // Google Apps Script requires no-cors
+            mode: 'no-cors',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(data),
+            body: params.toString(),
         });
 
-        // no-cors mode doesn't allow reading response, so we assume success
-        console.log('Form submitted to Google Sheets');
         return true;
     } catch (error) {
         console.error('Error submitting to Google Sheets:', error);
